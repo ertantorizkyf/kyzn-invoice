@@ -1,0 +1,283 @@
+{
+	"info": {
+		"_postman_id": "1e64f315-1c86-45dd-851c-2536d7403cbc",
+		"name": "KYZN Invoice BE Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43483000"
+	},
+	"item": [
+		{
+			"name": "Health Check",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": [
+				{
+					"name": "Health Check",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5050",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5050"
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"message\": \"API is running...\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/api/products?search_keyword=phone",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"api",
+						"products"
+					],
+					"query": [
+						{
+							"key": "search_keyword",
+							"value": "phone"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Products",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5050/api/products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5050",
+							"path": [
+								"api",
+								"products"
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "[\n    {\n        \"id\": 1,\n        \"name\": \"iPhone\",\n        \"image_url\": \"https://www.digimap.co.id/cdn/shop/files/iPhone_15_Pink_PDP_Image_Position-1__GBEN_863e22ef-a1c6-4031-8bf7-1ac9a9c5a086.jpg?v=1717731724\",\n        \"stock\": 100,\n        \"cogs\": \"100000.00\",\n        \"price\": \"150000.00\"\n    }\n]"
+				}
+			]
+		},
+		{
+			"name": "Get Invoices",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/api/invoices?page=1&per_page=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"api",
+						"invoices"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "per_page",
+							"value": "10"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Invoices",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5050/api/invoices?page=1&per_page=10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5050",
+							"path": [
+								"api",
+								"invoices"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"invoice_no\": \"INV-20251001-00001\",\n            \"date\": \"2025-01-01\",\n            \"customer\": \"John\",\n            \"salesperson\": \"Jane\",\n            \"payment_type\": \"CASH\",\n            \"notes\": \"Lorem ipsum\",\n            \"total_cogs\": 200000,\n            \"total_price\": 300000,\n            \"products\": [\n                {\n                    \"product_id\": 1,\n                    \"product_name\": \"iPhone\",\n                    \"qty\": 2,\n                    \"total_cogs\": 200000,\n                    \"total_price\": 300000\n                }\n            ]\n        }\n    ],\n    \"page\": 1,\n    \"per_page\": 10,\n    \"total\": 1,\n    \"total_pages\": 1\n}"
+				}
+			]
+		},
+		{
+			"name": "Get Revenues by Period",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5050/api/revenues?period=day",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"api",
+						"revenues"
+					],
+					"query": [
+						{
+							"key": "period",
+							"value": "day",
+							"description": "day/week/month"
+						}
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Get Revenues by Period",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5050/api/revenues?period=day",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5050",
+							"path": [
+								"api",
+								"revenues"
+							],
+							"query": [
+								{
+									"key": "period",
+									"value": "day"
+								}
+							]
+						}
+					},
+					"_postman_previewlanguage": null,
+					"header": null,
+					"cookie": [],
+					"body": "{\n    \"period\": \"day\",\n    \"data\": [\n        {\n            \"period\": \"2025-01-01\",\n            \"total_revenue\": \"300000.00\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Invoice",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"2025-01-01\",\n    \"customer\": \"John\",\n    \"salesperson\": \"Jane\",\n    \"payment_type\": \"CASH\",\n    \"notes\": \"Lorem ipsum\",\n    \"products\": [\n        {\n            \"product_id\": 1,\n            \"qty\": 2\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5050/api/invoices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5050",
+					"path": [
+						"api",
+						"invoices"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Create Invoice",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"date\": \"2025-01-01\",\n    \"customer\": \"John\",\n    \"salesperson\": \"Jane\",\n    \"payment_type\": \"CASH\",\n    \"notes\": \"Lorem ipsum\",\n    \"products\": [\n        {\n            \"product_id\": 1,\n            \"qty\": 2\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5050/api/invoices",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5050",
+							"path": [
+								"api",
+								"invoices"
+							]
+						}
+					},
+					"_postman_previewlanguage": "",
+					"header": [],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"message\": \"Invoice created successfully\",\n    \"invoice_id\": 1\n}"
+				}
+			]
+		}
+	]
+}

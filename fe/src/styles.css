@@ -1,0 +1,600 @@
+.kyzn-reset, html, body, #root {
+  margin: 0;
+  padding: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+}
+
+.kyzn-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #f8fafc;
+}
+
+.kyzn-sidebar {
+  width: 260px;
+  background: rgb(192, 117, 55);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 0; /* no inherent padding */
+}
+
+.kyzn-brand {
+  font-weight: 800;
+  font-size: 20px;
+  padding: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.15);
+}
+
+.kyzn-nav {
+  padding: 0; /* remove inherent padding */
+}
+
+.kyzn-nav-group {
+  margin-bottom: 12px;
+}
+
+.kyzn-nav-group-title {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  padding: 8px 12px; /* keep readable spacing for labels */
+}
+
+.kyzn-nav-link {
+  display: block;
+  color: #ffffff;
+  text-decoration: none;
+  opacity: 0.95;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin: 2px 4px;
+}
+
+.kyzn-nav-link:hover {
+  background: rgba(255,255,255,0.12);
+}
+
+.kyzn-nav-link.is-active {
+  background: rgba(255,255,255,0.2);
+}
+
+.kyzn-main {
+  flex: 1;
+  padding: 16px; /* page padding 16px */
+}
+
+/* Page content container */
+.kyzn-container {
+  margin: 0 auto;
+  padding-right: 16px; /* ensure right padding so controls don't stick to edge */
+}
+
+.kyzn-page-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 24px; /* title-content spacing 20-24px */
+}
+
+/* --- Form System --- */
+.kyzn-section-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 16px 0;
+}
+
+.kyzn-form {
+  display: grid;
+  gap: 12px;
+}
+
+.kyzn-form-row {
+  display: grid;
+  grid-template-columns: 200px 1fr; /* label column width */
+  gap: 12px;
+  align-items: center;
+}
+
+.kyzn-form-row--top {
+  align-items: start; /* for textarea top-align */
+}
+
+.kyzn-label {
+  font-weight: 700;
+  color: #1f2937; /* gray-800 */
+}
+
+.kyzn-input,
+.kyzn-select,
+.kyzn-textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #e5e7eb; /* gray-200 */
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #ffffff;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  outline: none;
+}
+
+.kyzn-input:focus,
+.kyzn-select:focus,
+.kyzn-textarea:focus {
+  border-color: rgb(242, 137, 72);
+  box-shadow: 0 0 0 3px rgba(242, 137, 72, 0.25);
+}
+
+.kyzn-textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+/* Make native select look like text input */
+.kyzn-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 36px; /* room for chevron */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px 14px;
+}
+
+/* --- Buttons --- */
+.kyzn-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.04s ease, filter 0.15s ease, background 0.15s ease;
+}
+
+.kyzn-btn:active { transform: translateY(1px); }
+
+.kyzn-btn--add { background: #10b981; color: #ffffff; }
+.kyzn-btn--add:hover { filter: brightness(1.05); }
+
+.kyzn-btn--remove { background: #f59e0b; color: #ffffff; }
+.kyzn-btn--remove:hover { filter: brightness(1.05); }
+
+.kyzn-btn--icon-red { background: #ef4444; color: #ffffff; padding: 8px; }
+.kyzn-btn--icon-red:hover { filter: brightness(1.05); }
+
+.kyzn-btn--submit { background: rgb(192, 117, 55); color: #ffffff; }
+.kyzn-btn--submit-disabled { background: #d1d5db; color: #ffffff; cursor: not-allowed; }
+
+/* --- Product card --- */
+.kyzn-product-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  padding: 12px;
+}
+
+.kyzn-product-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+}
+
+.kyzn-qty-input { width: 112px; }
+
+/* --- Dropdown --- */
+.kyzn-dd {
+  position: relative;
+}
+
+.kyzn-dd-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 10px 12px;
+  cursor: pointer;
+}
+
+.kyzn-dd-menu {
+  position: absolute;
+  z-index: 10;
+  margin-top: 8px;
+  width: 100%;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+  border-radius: 10px;
+}
+
+.kyzn-dd-search { padding: 10px; border-bottom: 1px solid #f3f4f6; }
+
+.kyzn-dd-items { max-height: 260px; overflow: auto; padding: 6px 0; }
+
+.kyzn-dd-item {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  padding: 8px 12px;
+  background: transparent;
+  border: none;
+  text-align: left;
+}
+
+.kyzn-dd-item:hover { background: #fff7ed; }
+
+/* Simple utility replacements */
+.kyzn-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.kyzn-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .kyzn-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.kyzn-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb; /* gray-200 */
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  cursor: pointer;
+}
+
+.kyzn-card:hover {
+  background: #f9fafb; /* gray-50 */
+}
+
+/* Invoice specific card styles */
+.kyzn-card--invoice {
+  background: rgb(250, 250, 250);
+  border-color: rgb(192, 117, 55); /* match sidebar */
+}
+
+/* Make the card span across content width (single-column grid) */
+.kyzn-card--full {
+  grid-column: 1 / -1;
+}
+
+.kyzn-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.kyzn-invoice-no {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+}
+
+.kyzn-divider {
+  height: 1px;
+  background: rgba(0, 0, 0, 0.08);
+  margin: 12px 0 16px 0;
+}
+
+.kyzn-error {
+  color: #ef4444; /* red-500 */
+  text-align: center;
+  padding: 16px 0;
+  font-weight: 600;
+}
+
+.kyzn-error-clickable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.kyzn-error-clickable:hover {
+  text-decoration: underline;
+}
+
+/* InvoiceList helpers */
+.kyzn-primary-btn {
+  background: rgb(192, 117, 55);
+  color: #ffffff;
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-block;
+  border: none;
+  cursor: pointer;
+}
+
+.kyzn-primary-btn:hover {
+  filter: brightness(1.05);
+}
+
+.kyzn-list-container {
+  /* viewport - page padding - title spacing */
+  max-height: calc(100vh - 16px - 24px);
+  overflow: auto;
+  padding-right: 4px; /* a little room from scrollbar */
+}
+
+.kyzn-list-empty {
+  color: #6b7280; /* gray-500 */
+  text-align: center;
+  padding: 24px 0;
+  font-weight: 500;
+}
+
+.kyzn-list-loading {
+  text-align: center;
+  padding: 16px 0;
+}
+
+/* Simple spinner without Tailwind */
+.kyzn-spinner {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: 4px solid rgba(192, 117, 55, 0.35);
+  border-top-color: transparent;
+  border-radius: 9999px;
+  animation: kyzn-spin 0.8s linear infinite;
+}
+
+@keyframes kyzn-spin {
+  to { transform: rotate(360deg); }
+}
+
+
+
+/* Modal */
+.kyzn-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.kyzn-modal {
+  position: relative;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+  width: 100%;
+  max-width: 720px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  /* ensure modal never exceeds viewport height and can host internal scroll areas */
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.kyzn-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  font-size: 22px;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+/* Styled round variant for modal close button previously inline in InvoiceModal */
+.kyzn-modal-close--round {
+  border: 2px solid rgb(192, 117, 55);
+  color: rgb(192, 117, 55);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  background: transparent;
+  transition: background 0.15s;
+  padding: 0;
+}
+
+/* Ensure the X icon is perfectly centered inside the round button */
+.kyzn-modal-close-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  line-height: 1;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+.kyzn-modal-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
+}
+
+.kyzn-modal-subtitle {
+  margin-top: 16px;
+  font-weight: 700;
+}
+
+/* Scrollable product section inside the modal */
+.kyzn-modal-products {
+  margin-top: 8px;
+  overflow: auto;
+  /* leave room for header and summary fields */
+  max-height: 50vh;
+}
+
+/* Condensed spacing for key-value info rows inside modal */
+.kyzn-modal-info p {
+  margin: 8px 0;
+}
+
+.kyzn-table {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+}
+
+.kyzn-table thead tr {
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.kyzn-table th,
+.kyzn-table td {
+  text-align: left;
+  padding: 6px 8px;
+}
+
+.kyzn-table tbody tr {
+  border-bottom: 1px solid #f1f5f9;
+}
+
+/* Period Filter Buttons */
+.kyzn-period-filter {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.kyzn-period-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.2s ease;
+  transform: scale(1);
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.kyzn-period-btn:hover {
+  transform: scale(1.05);
+}
+
+.kyzn-period-btn:active {
+  transform: scale(0.95);
+}
+
+.kyzn-period-btn--selected {
+  background-color: rgb(249, 115, 22); /* orange-500 */
+  color: white;
+  box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.2);
+}
+
+.kyzn-period-btn--unselected {
+  background-color: white;
+  color: rgb(249, 115, 22); /* orange-500 */
+  border-color: rgb(249, 115, 22); /* orange-500 */
+}
+
+.kyzn-period-btn--unselected:hover {
+  background-color: rgb(255, 247, 237); /* orange-50 */
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Revenue Chart Styles */
+.kyzn-chart-container {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+}
+
+.kyzn-chart-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 20px 0;
+  text-align: center;
+}
+
+.kyzn-chart-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 2px dashed #d1d5db;
+}
+
+.kyzn-chart-empty-content {
+  text-align: center;
+  color: #6b7280;
+}
+
+.kyzn-chart-empty-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+  color: #374151;
+}
+
+.kyzn-chart-empty-content p {
+  font-size: 14px;
+  margin: 0;
+}
+
+.kyzn-chart-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background: #f9fafb;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+
+.kyzn-chart-loading p {
+  margin-top: 16px;
+  color: #6b7280;
+  font-weight: 500;
+}
+
+.kyzn-chart-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+  background: #fef2f2;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+}
+
+.kyzn-chart-error h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.kyzn-chart-error p {
+  font-size: 14px;
+  margin: 0;
+  text-align: center;
+}
+

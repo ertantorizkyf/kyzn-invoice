@@ -1,0 +1,41 @@
+version: "3.9"
+
+name: kyzn-invoice
+
+services:
+  be:
+    build: 
+      context: ../be
+      dockerfile: ../docker/be.Dockerfile
+    container_name: kyzn-invoice-be
+    ports:
+      - "5050:5050"
+    volumes:
+      - ../be:/app
+    env_file:
+      - ../be/.env
+    depends_on:
+      - db
+
+  fe:
+    build: 
+      context: ../fe
+      dockerfile: ../docker/fe.Dockerfile
+    container_name: kyzn-invoice-fe
+    ports:
+      - "5051:80"
+    volumes:
+      - ../fe:/app
+    env_file:
+      - ../fe/.env
+    depends_on:
+      - be
+
+  db:
+    image: mysql:8.0
+    container_name: kyzn-invoice-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: kyzn_invoice
+    ports:
+      - "3306:3306"

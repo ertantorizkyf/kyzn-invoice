@@ -1,0 +1,41 @@
+@startuml ERD
+
+' table_name: invoices
+Entity Invoices {
+    id: int (PK)
+    ---
+    invoice_no: string(INV-date-0000x format)
+    date: date
+    customer: string
+    salesperson: string
+    payment_type: string(CASH/CREDIT/NOTCASHORCREDIT)
+    notes: string (optional)
+}
+
+' table_name: invoice_products
+Entity InvoiceProducts {
+    id: int (PK)
+    invoice_id: int(FK)
+    product_id: int(FK)
+    ---
+    product_name: string
+    qty: int
+    total_cogs: decimal
+    total_price: decimal
+}
+
+' table_name: products
+Entity Products {
+    id: int (PK)
+    ---
+    name: string
+    image_url: string
+    stock: int
+    cogs: decimal
+    price: decimal
+}
+
+Invoices ||--|{ InvoiceProducts
+InvoiceProducts }o--|| Products
+
+@enduml
