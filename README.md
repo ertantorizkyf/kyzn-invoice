@@ -46,6 +46,8 @@ kyzn-invoice/
 │   │   │   ├── invoiceController.js    # Invoice list and create endpoints
 │   │   │   ├── productController.js    # Product search endpoints
 │   │   │   └── revenueController.js    # Revenue analytics endpoints
+│   │   ├── middleware/
+│   │   │   └── authMiddleware.js       # API key authentication middleware
 │   │   ├── models/              # Database models
 │   │   │   ├── invoiceModel.js         # Invoice data model
 │   │   │   ├── invoiceProductModel.js  # Invoice-Product junction model
@@ -138,12 +140,14 @@ Before running the application, ensure you have the following installed:
    DB_USER=root
    DB_PASS=root
    DB_NAME=kyzn_invoice
+   STATIC_API_KEY=your_secure_api_key_here
    ```
    
    **Frontend (.env in `fe/` directory):**
    ```env
    VITE_FE_PORT=5051
    VITE_API_URL=http://localhost:5050
+   VITE_API_KEY=your_secure_api_key_here
    ```
 
 3. **Start the application**
@@ -261,6 +265,35 @@ npm run dev
 
 ### Revenue
 - `GET /api/revenues` - Get revenue time series data
+
+## Security
+
+### API Key Authentication
+
+All API endpoints are protected with API key authentication. To access the API, you must include the `X-API-KEY` header in your requests.
+
+**Environment Configuration:**
+
+Backend (`.env` in `/be` directory):
+```bash
+STATIC_API_KEY=your_secure_api_key_here
+```
+
+Frontend (`.env` in `/fe` directory):
+```bash
+VITE_API_URL=http://localhost:5050
+VITE_API_KEY=your_secure_api_key_here
+```
+
+**Example API Request:**
+```bash
+curl -H "X-API-KEY: your_secure_api_key_here" \
+     -H "Content-Type: application/json" \
+     http://localhost:5050/api/products
+```
+
+**Frontend Integration:**
+The frontend automatically includes the `X-API-KEY` header in all API requests. Make sure both backend and frontend use the same API key value.
 
 ## Database Schema
 

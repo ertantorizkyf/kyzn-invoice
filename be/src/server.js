@@ -2,6 +2,7 @@
 import dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
+import { apiKeyAuth } from "./middleware/authMiddleware.js";
 import productRoutes from "./routes/productRoutes.js";
 import invoiceRoutes from "./routes/invoiceRoutes.js";
 import revenueRoutes from "./routes/revenueRoutes.js";
@@ -21,6 +22,9 @@ app.use(
   })
 );
 app.use(express.json());
+
+// Apply API key authentication to all API routes
+app.use("/api", apiKeyAuth);
 
 // Routes
 app.use("/api/products", productRoutes);
