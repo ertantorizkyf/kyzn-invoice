@@ -57,15 +57,31 @@ const InvoiceList = () => {
       if (status === "loading") return;
       if (debounceRef.current) return; // debounce to prevent multiple triggers
       if (observer.current) observer.current.disconnect();
+      
+      // Fallback to document root if container isn't ready (for Brave/Chromium compatibility)
+      const rootElement = containerRef.current || null;
+      
       observer.current = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && hasMore) {
+        const entry = entries[0];
+        console.log('IntersectionObserver triggered:', {
+          isIntersecting: entry.isIntersecting,
+          intersectionRatio: entry.intersectionRatio,
+          hasMore,
+          status
+        });
+        
+        if (entry.isIntersecting && hasMore) {
           debounceRef.current = true;
           setTimeout(() => {
             dispatch(incrementPage());
             debounceRef.current = false;
           }, 300); // 300ms debounce
         }
-      }, { root: containerRef.current, rootMargin: "0px", threshold: 1.0 });
+      }, { 
+        root: rootElement, 
+        rootMargin: "100px 0px", // Add 100px buffer below the container
+        threshold: 0.1 // Trigger when 10% of element is visible instead of 100%
+      });
       if (node) observer.current.observe(node);
     },
     [status, hasMore, dispatch]
